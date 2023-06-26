@@ -13,7 +13,7 @@ namespace UploadApp.Services
         public SettingsDto SettingsDto { get; private set; }
 
         public async Task GetSettingsAsync() =>
-             await Task.Run(() => SettingsDto = JsonConvert.DeserializeObject<SettingsDto>(Preferences.Get(nameof(SettingsDto), string.Empty)) ?? new SettingsDto());
+             await Task.Run(() => SettingsDto ??= JsonConvert.DeserializeObject<SettingsDto>(Preferences.Get(nameof(SettingsDto), string.Empty)) ?? new SettingsDto());
         
         public async Task SetSettingsAsync() =>
              await Task.Run(() => Preferences.Set(nameof(SettingsDto), JsonConvert.SerializeObject(SettingsDto)));

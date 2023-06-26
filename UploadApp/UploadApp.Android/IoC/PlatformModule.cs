@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UploadApp.Droid.Services.Camera;
 using UploadApp.Models;
 using UploadApp.Services;
 
@@ -20,6 +21,7 @@ namespace UploadApp.Droid.IoC
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
+            builder.RegisterType<CameraService>().As<ICameraService>();
         }
     }
 }

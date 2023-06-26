@@ -70,6 +70,10 @@
                     <Label Text="Выберите дату" Style="{StaticResource labelDescription}"/>
                     <DatePicker/>
                 </Grid>
+                <Grid>
+                    <Entry Text="{Binding SettingsDto.ZXingCurrentCameraResolution,
+                        Converter={StaticResource zXingCameraResolutionConverter}}"/>
+                </Grid>
                 
             </StackLayout>
         </ScrollView>

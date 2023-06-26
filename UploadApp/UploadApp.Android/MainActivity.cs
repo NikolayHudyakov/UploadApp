@@ -14,16 +14,18 @@ using Android.Util;
 using Android.Graphics;
 using Java.Util.Jar;
 using AndroidX.Core.Content;
-using UploadApp.Droid.Models;
+using System.Runtime.CompilerServices;
 
 namespace UploadApp.Droid
 {
     [Activity(Label = "UploadApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        public static Context Instance { get; private set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Instance = this;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -40,20 +42,6 @@ namespace UploadApp.Droid
             LoadApplication(new App(new PlatformModule()));
 
             Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 15, 62, 56));
-            
-            //var cameraManager = GetSystemService(Context.CameraService) as CameraManager;
-            //var list = new List<Size>();
-            //foreach (string cameraID in  cameraManager.GetCameraIdList())
-            //{
-            //    CameraCharacteristics cc = cameraManager.GetCameraCharacteristics(cameraID);
-            //    StreamConfigurationMap configurationMap = cc.Get(CameraCharacteristics.ScalerStreamConfigurationMap) as StreamConfigurationMap;
-            //    Size[] sizesJpeg = configurationMap.GetOutputSizes((int)ImageFormatType.Jpeg);
-            //    list.Add(sizesJpeg[0]);
-            //}
-
-
-            //var cs = new CameraService(cameraManager, "0");
-            //cs.OpenCamera();
         }
 
 

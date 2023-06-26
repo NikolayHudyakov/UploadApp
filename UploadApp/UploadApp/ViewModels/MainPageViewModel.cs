@@ -10,59 +10,67 @@ using Xamarin.Essentials;
 using UploadApp.Services;
 using System.IO;
 using System.Threading.Tasks;
-using Emgu;
-using Emgu.CV;
-using Emgu.Util;
-using Emgu.CV.Util;
-using Emgu.CV.Structure;
+using ZXing;
+using ZXing.Mobile;
+using System.Linq;
 
 namespace UploadApp.ViewModels
 {
     internal class MainPageViewModel : BaseViewModel
     {
-        private ITcpClientService _tcpClientModel;
         private ISettingsStorageService<SettingsDto> _settingsStorage;
 
         #region Field
         private string _ipEndPont;
-        private ImageSource _imageSource;
         #endregion
-
-        public MainPageViewModel(ITcpClientService tcpClientModel, ISettingsStorageService<SettingsDto> settingsStorage)
+        private int _count = 0;
+        public MainPageViewModel(ISettingsStorageService<SettingsDto> settingsStorage)
         {
-            _tcpClientModel = tcpClientModel;
             _settingsStorage = settingsStorage;
+
             GetSettingsAsync();
-            ToStringCommand = new Command(GetPhoto);
+
+            
+            ToStringCommand = new Command<Result>(ScanResult);
+
+
+            ZXingScanningOptions = new MobileBarcodeScanningOptions();
+
+            ZXingScanningOptions.CameraResolutionSelector = SetCameraResolution;
+            
+
+            
+        }
+        private CameraResolution SetCameraResolution(List<CameraResolution> availableResolutions) => availableResolutions[0];
+        //{
+        //    _settingsStorage.SettingsDto.ZXingCameraResolutions = availableResolutions;
+        //    return _settingsStorage.SettingsDto.ZXingCurrentCameraResolution;
+        //}
+            
+        private void ScanResult(Result result)
+        {
+            _count++;
+            IpEndPont =$"{result.Text} *** {_count}";
+        }
+        
+        private void GetPhoto(byte[] photo)
+        {
             
         }
 
         private async void GetSettingsAsync()
         {
             await _settingsStorage.GetSettingsAsync();
+            _settingsStorage.SettingsDto.TestList = new List<string> { "3434 * 2323", "34234 * 23223" };
         }
         
-        private async void GetPhoto()
-        {
-            await Task.Delay(100);
-        }
-
-        private void VideoCapture_ImageGrabbed(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         #region Properties
         public string IpEndPont
         {
             get => _ipEndPont;
             set => SetProperty(ref _ipEndPont, value);
         }
-        public ImageSource ImageSource
-        {
-            get => _imageSource;
-            set => SetProperty(ref _imageSource, value);
-        }
+        public MobileBarcodeScanningOptions ZXingScanningOptions { get; set; }
         #endregion
 
         #region Commands

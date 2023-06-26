@@ -29,7 +29,7 @@ namespace UploadApp.Droid.Services.Camera
 
                 Photo?.Invoke(this, imageData);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // ignored
             }

@@ -2,27 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customViews="clr-namespace:UploadApp.CustomViews"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              x:Class="UploadApp.Views.MainPage" Title="Главная"
              BindingContext="{Binding MainPageViewModel, Source={StaticResource VMLocator}}">
 
-    
-        <StackLayout>
-            <customViews:CameraPreview  
-                    x:Name="CameraPreview"           
-                    BackgroundColor="Black"
-                    HorizontalOptions="FillAndExpand"
-                    Camera="Rear"                                         
-                    Margin="0,0,0,0"
-                    VerticalOptions="FillAndExpand"
-                    Grid.Column="0" Grid.Row="0">
-            </customViews:CameraPreview>
-            <Button HeightRequest="84"
-                            Text="Take Picture"
-                            x:Name="CameraButton"
-                            Clicked="OnCameraClicked" 
-                            FontSize="Medium"
-                            WidthRequest="84"/>
-        </StackLayout>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <zxing:ZXingScannerView 
+            Grid.Row="0"
+            ScanResultCommand="{Binding ToStringCommand}"
+            IsScanning="True"
+            Options="{Binding ZXingScanningOptions}"/>
+        <Label Text="{Binding IpEndPont}" Grid.Row="1" TextColor="Black"/>
+    </Grid>
         
 
 </ContentPage>

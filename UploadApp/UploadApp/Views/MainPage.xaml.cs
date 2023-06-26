@@ -17,16 +17,6 @@ namespace UploadApp.Views
         public MainPage()
         {
             InitializeComponent();
-            CameraPreview.PictureFinished += OnPictureFinished;
-        }
-        void OnCameraClicked(object sender, EventArgs e)
-        {
-            CameraPreview.CameraClick.Execute(null);
-        }
-
-        private void OnPictureFinished()
-        {
-            DisplayAlert("Confirm", "Picture Taken", "", "Ok");
         }
     }
 }

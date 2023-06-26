@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="IoC\PlatformModule.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Models\CameraService.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Camera\CameraCaptureListener.cs" />
@@ -70,6 +69,7 @@
     <Compile Include="Services\Camera\CameraDroid.cs" />
     <Compile Include="Services\Camera\CameraStateListener.cs" />
     <Compile Include="Services\Camera\CameraViewServiceRenderer.cs" />
+    <Compile Include="Services\Camera\CameraService.cs" />
     <Compile Include="Services\Camera\ImageAvailableListener.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +94,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
