@@ -73,6 +73,8 @@
                 <Grid>
                     <Entry Text="{Binding SettingsDto.ZXingCurrentCameraResolution,
                         Converter={StaticResource zXingCameraResolutionConverter}}"/>
+                    <Picker ItemsSource="{Binding SettingsDto.ZXingCameraResolutions,
+                        Converter={StaticResource zXingCameraResolutionsConverter}}"/>
                 </Grid>
                 
             </StackLayout>

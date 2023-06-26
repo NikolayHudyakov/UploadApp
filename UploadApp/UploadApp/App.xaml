@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ioc:ViewModelLocator x:Key="VMLocator"/>
             <cnvrt:ZXingCameraResolutionConverter x:Key="zXingCameraResolutionConverter"/>
+            <cnvrt:ZXingCameraResolutionsConverter x:Key="zXingCameraResolutionsConverter"/>
         </ResourceDictionary>
         <ResourceDictionary Source="Resources/Themes/LightTheme.xaml"/>
         

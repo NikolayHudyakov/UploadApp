@@ -41,12 +41,13 @@ namespace UploadApp.ViewModels
 
             
         }
-        private CameraResolution SetCameraResolution(List<CameraResolution> availableResolutions) => availableResolutions[0];
-        //{
-        //    _settingsStorage.SettingsDto.ZXingCameraResolutions = availableResolutions;
-        //    return _settingsStorage.SettingsDto.ZXingCurrentCameraResolution;
-        //}
-            
+        private CameraResolution SetCameraResolution(List<CameraResolution> availableResolutions)/* => availableResolutions[0];*/
+        {
+            _settingsStorage.SettingsDto.ZXingCurrentCameraResolution = availableResolutions[0];
+            _settingsStorage.SettingsDto.ZXingCameraResolutions = availableResolutions;
+            return _settingsStorage.SettingsDto.ZXingCurrentCameraResolution;
+        }
+
         private void ScanResult(Result result)
         {
             _count++;
